@@ -1,0 +1,14 @@
+2020 BHS project introduction
+
+The client wants us to provide a support tool which could convert the provided medical records into specified formats files in order to use it later for analytics.
+
+The main purpose of the scripts is to clean data. Inputs documents varies (CSV is only one of them). Suppose the output is ARFF files(Weka).
+Data types might be more specific (num-int/float/complex, str,list,tuple), and output formats might be extended to see5. 
+
+We will modify the orignal repository according to our needs first.
+
+We will have a much better model since the sample data provides. Test will be done as part of the tool assessment report.
+
+All members are required to leave their own footprint on Github website and contribute to this project.
+
+If there is any unproper content or use of the scrips, please feel free to contact with the project manager Yi. GitID: Cathyyihe.
