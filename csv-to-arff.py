@@ -35,7 +35,7 @@ import os
 
 fileToRead = "worldcup2014.csv"  #csv file name or absolute path to be open.
 fileToWrite = "worldcup2014.arff" #name as how you'll save your arff file.
-relation = "World Cup 2014" #how you'll like to call your relation as.
+relation = fileToRead[:-4] #how you'll like to call your relation as.
 
 dataType = [] # Stores data types 'nominal' and 'numeric'
 columnsTemp = [] # Temporary stores each column of csv file except the attributes
@@ -66,7 +66,7 @@ for j in range(0,totalCols):
 # check for comams or blanks and adds single quotes
 for j in range(0,totalCols):
 	for i in range(1,totalRows):
-		allData[i][j] = allData[i][j].lower()
+		allData[i][j] = allData[i][j]
 		if "\r" in allData[i][j] or '\r' in allData[i][j] or "\n" in allData[i][j] or '\n' in allData[i][j]:
 			allData[i][j] = allData[i][j].rstrip(os.linesep)
 			allData[i][j] = allData[i][j].rstrip("\n")
@@ -114,19 +114,18 @@ for i in range(0,len(finalDataType )):
 	else:
 		attTypes.append(finalDataType[i])
 
-# Show comments
-writeFile.write("%\n% Comments go after a '%' sign.\n%\n")
-writeFile.write("%\n% Relation: " + relation +"\n%\n%\n")
-writeFile.write("% Attributes: " + str(totalCols) + " "*5 
-	+ "Instances: " + str(totalRows-1) + "\n%\n%\n\n")
+# # Show comments
+# writeFile.write("%\n% Comments go after a '%' sign.\n%\n")
+# writeFile.write("%\n% Relation: " + relation +"\n%\n%\n")
+# writeFile.write("% Attributes: " + str(totalCols) + " "*5 
+# 	+ "Instances: " + str(totalRows-1) + "\n%\n%\n\n")
 
 # Show Relation
 writeFile.write("@relation " + relation + "\n\n")
 
 # Show Attributes
 for i in range(0,totalCols):
-	writeFile.write("@attribute" + " '" + attributes[i] 
-		+ "' " + attTypes[i] + "\n")
+	writeFile.write("@attribute" + " " + attributes[i] + " " + attTypes[i] + "\n")
 
 # Show Data
 writeFile.write("\n@data\n")
