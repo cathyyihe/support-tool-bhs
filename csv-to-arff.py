@@ -132,4 +132,4 @@ writeFile.write("\n@data\n")
 for i in range(1,totalRows):
 	writeFile.write(','.join(allData[i])+"\n")
 
-print(fileToWrite + " was converted to " + fileToRead)
+print(fileToRead + " was converted to " + fileToWrite)
