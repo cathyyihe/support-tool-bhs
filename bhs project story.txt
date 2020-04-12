@@ -2,8 +2,8 @@
 
 The client wants us to provide a support tool which could convert the provided medical records into specified formats files in order to use it later for analytics.
 
-The main purpose of the scripts is to clean data. Inputs documents varies (CSV is only one of them). Suppose the output is ARFF files(Weka).
-Data types might be more specific (num-int/float/complex, str,list,tuple), and output formats might be extended to see5. 
+The main purpose of the scripts is to clean data. Inputs documents varies (CSV is only one of them). Suppose the output is ARFF files(Weka3.8.4).
+Data types might be more specific and output formats might be extended to see5. 
 
 We will modify the orignal repository according to our needs first.
 
