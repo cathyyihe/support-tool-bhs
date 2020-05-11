@@ -27,12 +27,13 @@ class Arff():
         totalCols = len(attributes)
         totalRows = len(allData)
         f.close()
+        # print(allData)
 
-        # Add a '0' for each empty cell
+        # Add a '?' for each empty cell
         for j in range(0,totalCols):
             for i in range(0,totalRows):
                 if 0 == len(allData[i][j]):
-                    allData[i][j] = "0"
+                    allData[i][j] = "?"
 
         # check for comams or blanks and adds single quotes
         for j in range(0,totalCols):
@@ -42,16 +43,18 @@ class Arff():
                     allData[i][j] = allData[i][j].rstrip(os.linesep)
                     allData[i][j] = allData[i][j].rstrip("\n")
                     allData[i][j] = allData[i][j].rstrip("\r")
-                try:
-                    if allData[i][j] == str(float(allData[i][j])) or allData[i][j] == str(int(allData[i][j])):
-                        allData[i][j]=allData[i][j]
-                except ValueError as e:
-                        allData[i][j] = "'" + allData[i][j] + "'"
+ 
 
         # fin gives unique cells for nominal and numeric
         for j in range(0,totalCols):
             for i in range(1,totalRows):
-                columnsTemp.append(allData[i][j])
+                #delete "?" in attributes section
+                if not (allData[i][j]=="?" or allData[i][j]== "'?'"):
+                    if " " not in allData[i][j]:
+                        columnsTemp.append(allData[i][j])
+                    else:
+                        columnsTemp.append(str("'"+allData[i][j]+"'"))
+            # print(columnsTemp)
             for item in columnsTemp:
                 if not (item in uniqueTemp):
                     uniqueTemp.append(item)
@@ -63,9 +66,18 @@ class Arff():
         for j in range(1,totalRows):
             for i in range(0,totalCols):
                 try:
-                    if allData[j][i] == str(float(allData[j][i])) or allData[j][i] == str(int(allData[j][i])):
+                    if "%" in allData[j][i]:
+                        allData[j][i]=str(eval(allData[j][i].strip("%"))/100)
+                    if " " in allData[j][i]:
+                        allData[j][i]=str("'"+allData[j][i]+"'")
+                    allData[j][i]=allData[j][i].strip("~!@#$^&*()_+{}|:<>`-=[]\;',./")
+                    if allData[j][i]=="?" \
+                            or allData[j][i]=="'?'" \
+                            or allData[j][i]==""\
+                            or allData[j][i] == str(float(allData[j][i]))\
+                            or allData[j][i] == str(int(allData[j][i])):
                         dataType.append("numeric")
-                except ValueError as e:
+                except ValueError or SyntaxError:
                         dataType.append("nominal")
 
         for j in range(0,totalCols):
@@ -80,17 +92,12 @@ class Arff():
             dataTypeTemp = []
 
         for i in range(0,len(finalDataType )):
-            if finalDataType [i] == "nominal":
+            if finalDataType[i] == "nominal":
                 attTypes.append(uniqueOfColumn[i])
             else:
                 attTypes.append(finalDataType[i])
 
-        # # Show comments
-        # writeFile.write("%\n% Comments go after a '%' sign.\n%\n")
-        # writeFile.write("%\n% Relation: " + relation +"\n%\n%\n")
-        # writeFile.write("% Attributes: " + str(totalCols) + " "*5
-        # 	+ "Instances: " + str(totalRows-1) + "\n%\n%\n\n")
-
+                
         # Show Relation
         writeFile.write("@relation " + self.relation + "\n\n")
 
@@ -100,9 +107,13 @@ class Arff():
 
         # Show Data
         writeFile.write("\n@data\n")
-        for i in range(1,totalRows):
-            writeFile.write(','.join(allData[i])+"\n")
+        for j in range(1,totalRows):
+            for i in range(totalCols):
+                if " " in allData[j][i]:
+                    allData[j][i]=str("'"+allData[j][i]+"'")
+            writeFile.write(','.join(allData[j])+"\n")
 
         # print(self.fileToRead + " was converted to " + self.fileToWrite)
 
-# Arff("csv1.csv","arff1.arff").generate_arff()
+# Arff("mergedcsv13.csv","mergedcsv13.arff").generate_arff()
+# Arff("anatesting.csv","anatesting.arff").generate_arff()
