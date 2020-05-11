@@ -1,0 +1,26 @@
+@relation mergedcsv13
+
+@attribute city {a,b,c,d,e,f,g}
+@attribute temp numeric
+@attribute humi {'40\%',0.4,0.5}
+@attribute pred {T,F}
+@attribute ID {D1,D2,D3,D4,D5,D6,D7,D8,D9}
+@attribute state {VIC,NSW}
+@attribute rate {high,low}
+@attribute name {'W H',Cool,'nick ',nick}
+@attribute city.1 {a,b,c,d,e,f,g}
+@attribute temp.1 numeric
+@attribute humi.1 numeric
+
+@data
+a,20,'40\%',T,D1,VIC,high,?,?,?,?
+b,50,'40\%',F,D2,NSW,low,?,?,?,?
+a,20,0.4,T,D1,?,?,'W H',a,20,0.4
+b,30,?,F,D2,?,?,Cool,b,20,?
+c,40,0.5,T,D3,?,?,'nick ',c,20,0.5
+d,50,0.5,F,D4,?,?,nick,d,20,0.5
+e,60,0.5,T,D5,?,?,nick,e,20,0.5
+f,70,0.5,F,D6,?,?,nick,f,20,0.5
+g,80,0.5,F,D7,?,?,nick,g,20,0.5
+a,90,0.5,F,D8,?,?,nick,a,20,0.5
+b,100,?,T,D9,?,?,nick,b,20,?

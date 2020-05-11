@@ -1,0 +1,12 @@
+city,temp,humi,pred,ID,state,rate,name,city.1,temp.1,humi.1
+a,20,40%,T,D1,VIC,high,,?,?,
+b,50,40%,F,D2,NSW,low,,?,?,
+a,20,0.4,T,D1,?,?,W H,a,20,0.4
+b,30,?,F,D2,?,?,Cool,b,20,?
+c,40,0.5,T,D3,?,?,nick ,c,20,0.5
+d,50,0.5,F,D4,?,?,nick,d,20,0.5
+e,60,0.5,T,D5,?,?,nick,e,20,0.5
+f,70,0.5,F,D6,?,?,nick,f,20,0.5
+g,80,0.5,F,D7,?,?,nick,g,20,0.5
+a,90,0.5,F,D8,?,?,nick,a,20,0.5
+b,100,?,T,D9,?,?,nick,b,20,?
